@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: 🔨 Build Angular
-        run: npm run build --configuration production --base-href /pizza/
+        run: npm run build --configuration production
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
