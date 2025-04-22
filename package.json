@@ -11,6 +11,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "open": "ng serve --open",
+    "deploy": "ng deploy --base-href=/pizza/",
     "electron": "electron .",
     "build:electron": "ng build && electron .",
     "package:windows": "electron-packager ./ PizzaProject5 --platform=win32 --overwrite",
