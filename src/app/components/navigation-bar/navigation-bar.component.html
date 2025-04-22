@@ -1,0 +1,108 @@
+<div *ngIf="menuExpanded" class="cover-element"></div>
+<div class="pizza-nav-bar" [@openClose]="expandedStr">
+    <div class="pizza-nav-bar-section">
+        <div class="pizza-nav-bar-icon-container center-flex-display" (click)="toggleMenuExpanded()" [title]="(menuExpanded ? '' : expandTitle)">
+            <mat-icon class="pizza-nav-bar-icon">menu</mat-icon>
+            <div *ngIf="menuExpanded" class="pizza-nav-bar-optText" [innerHTML]="expandTitle"></div>
+        </div>
+        <a routerLink="/" routerLinkActive="active"
+            class="pizza-nav-bar-icon-container center-flex-display"
+            [title]="(menuExpanded ? '' : 'Create Your Order')">
+
+            <mat-icon class="pizza-nav-bar-orderIcon">local_pizza</mat-icon>
+            <div *ngIf="menuExpanded" class="pizza-nav-bar-optText">Create Order</div>
+        </a>
+        <a routerLink="/pay" routerLinkActive="active"
+            class="pizza-nav-bar-icon-container center-flex-display"
+            [title]="(menuExpanded ? '' : 'Pay Now')">
+
+            <mat-icon class="pizza-nav-bar-icon">credit_card</mat-icon>
+            <div *ngIf="menuExpanded" class="pizza-nav-bar-optText">Pay Now</div>
+        </a>
+        <a routerLink="/login" routerLinkActive="active"
+            class="pizza-nav-bar-icon-container center-flex-display"
+            [title]="(menuExpanded ? '' : 'Your Account')">
+
+            <mat-icon class="pizza-nav-bar-icon">account_circle</mat-icon>
+            <div *ngIf="menuExpanded" class="pizza-nav-bar-optText">Your Account</div>
+        </a>
+    </div>
+
+    <div class="pizza-nav-bar-section">
+        <a routerLink="/about" routerLinkActive="active"
+            class="pizza-nav-bar-icon-container center-flex-display"
+            [title]="(menuExpanded ? '' : 'About Us')">
+
+            <mat-icon class="pizza-nav-bar-icon">help</mat-icon>
+            <div *ngIf="menuExpanded" class="pizza-nav-bar-optText">About Us</div>
+        </a>
+        <a [href]="GITHUB_LINK" target="pizza-github-repo"
+            class="pizza-nav-bar-icon-container center-flex-display"
+            [title]="(menuExpanded ? '' : 'GitHub Repository')">
+
+            <img src="/GitHub_Icon.svg" width="30" draggable="false" style="user-select: none;" />
+            <div *ngIf="menuExpanded" class="pizza-nav-bar-optText"> GitHub Repo </div>
+        </a>
+        <div class="pizza-nav-bar-icon-container center-flex-display" (click)="goBack()" [title]="(menuExpanded ? '' : 'Go Back')">
+            <mat-icon class="pizza-nav-bar-icon">arrow_backward</mat-icon>
+            <div *ngIf="menuExpanded" class="pizza-nav-bar-optText" [innerHTML]="'Go Back'"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+.pizza-nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50px;
+    background: var(--dark-brown);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    z-index: 500;
+}
+.pizza-nav-bar-section {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+}
+
+.pizza-nav-bar-icon-container {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--beige);
+    width: 100%;
+    height: 45px;
+    transition: var(--default-transition), padding 0.2s;
+}
+.pizza-nav-bar-icon-container:hover {
+    background-color: var(--deep-red);
+    padding-left: 3px;
+    border-right: 3px solid var(--deep-red);
+}
+
+.pizza-nav-bar-icon {
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+}
+.pizza-nav-bar-orderIcon {
+    font-size: 25px;
+    height: 25px;
+    width: 25px;
+    padding: 4px;
+    border: 1px solid var(--beige);
+    border-radius: 20px;
+}
+
+.pizza-nav-bar-optText {
+    margin-left: 5px;
+    width: fit-content;
+    min-width: 150px;
+    font-family: var(--main-font-family);
+}
+</style>

@@ -1,0 +1,115 @@
+@import './app/styles/app.component.css';
+@import './app/styles/auth.component.css';
+
+:root {
+    --beige: #F5F5DC;
+    --dark-brown: #4B2E1A;
+    --deep-red: #8B0000;
+    --dark-brown-translucent: #4b2e1a75;
+
+    --main-font-family: "Lora", sans-serif;
+
+    --empty-border: 2px solid rgba(0, 0, 0, 0);
+    --default-transition: border 0.2s, color 0.2s, background-color 0.2s;
+}
+
+body {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    height: 100%;
+    width: calc(100% - 50px);
+    min-width: 300px;
+    margin: 0;
+    padding: 0;
+    background: var(--beige);
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+.pizza-page {
+    position: absolute;
+    height: fit-content;
+    min-height: 100%;
+    width: 100%;
+    min-width: 320px;
+    background: var(--beige);
+    font-family: var(--main-font-family);
+    color: var(--deep-red);
+}
+
+.center-flex-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-element {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 300;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-weight: bold;
+    font-size: 45px;
+}
+h2 {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-weight: bold;
+    font-size: 35px;
+}
+h3 {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-weight: bold;
+    font-size: 27px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-weight: bold;
+}
+span {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font-family);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 370px) {
+    body {
+        overflow-x: auto !important;
+    }
+}
+
+mat-radio-group {
+    display: flex;
+    flex-direction: column;
+}

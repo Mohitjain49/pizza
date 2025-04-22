@@ -1,0 +1,15 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="pizza-page" style="height: 100%;">
+    <div class="create-pizza-grid" style="height: 100%;">
+        <div class="create-pizza-box" [style]="{ borderRight: (this.orderService.laptopScreen ? '3px solid var(--dark-brown)' : 'none') }">
+            <pizza-screen *ngIf="this.orderService.createScreenIndex == 0"></pizza-screen>
+            <beverages-screen *ngIf="this.orderService.createScreenIndex == 1"></beverages-screen>
+            <order-screen *ngIf="this.orderService.createScreenIndex == 2"></order-screen>
+            <nav-screens></nav-screens>
+        </div>
+
+        <div class="create-pizza-box" *ngIf="this.orderService.laptopScreen">
+            <order-screen></order-screen>
+        </div>
+    </div>
+</div>

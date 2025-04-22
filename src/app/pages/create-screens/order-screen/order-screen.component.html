@@ -1,0 +1,220 @@
+<div id="order-screen" class="create-pizza-box-page">
+    <div class="center-flex-display create-pizza-box-title-container">
+        <h2 class="create-pizza-title create-pizza-box-title">Your Order</h2>
+    </div>
+
+    <div class="noOrder-container center-flex-display" *ngIf="!this.orderService.ordersCreated()">
+        <h3 class="noOrder-container-text center-flex-display">
+            You have currently not created an order item yet.
+        </h3>
+        <div id="noOrder_buttons" class="create-pizza-orderBtn-container">
+            <div class="create-pizza-orderBtn" [innerHTML]="'Create A Pizza'" (click)="setScreen(0)"></div>
+            <div class="create-pizza-orderBtn" [innerHTML]="'Select A Drink'" (click)="setScreen(1)"></div>
+        </div>
+    </div>
+
+    <div id="pizza-table-container" class="order-table-container" *ngIf="this.orderService.ordersCreated()">
+        <div id="pizza-table-header" class="order-table-top">
+            <h3 class="order-table-top-header">Pizzas</h3>
+            <mat-icon class="order-table-top-icon" title="Add Another Pizza" (click)="setScreen(0)">add</mat-icon>
+        </div>
+        <table #pizzaTable id="pizza-table" mat-table class="order-table" [dataSource]="this.orderService.orderPizzas">
+            <ng-container matColumnDef="size">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Size </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.size}} </td>
+            </ng-container>
+            <ng-container matColumnDef="crust">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Crust </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.crust}} </td>
+            </ng-container>
+            <ng-container matColumnDef="toppings">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Toppings </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info">
+                    <span *ngFor="let topping of item.toppings; let i = index">
+                        {{ (((i + 1) != item.toppings.length) ? (topping + ', ') : topping) }}
+                    </span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Quantity </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.quantity}} </td>
+            </ng-container>
+            <ng-container matColumnDef="priceStr">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Price </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.priceStr}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="pizzaColumnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: pizzaColumnsToDisplay"></tr>
+        </table>
+    </div>
+
+    <div class="order-table-container" *ngIf="this.orderService.ordersCreated()">
+        <div class="order-table-top">
+            <h3 class="order-table-top-header">Beverages</h3>
+            <mat-icon class="order-table-top-icon" title="Add Another Beverage" (click)="setScreen(1)">add</mat-icon>
+        </div>
+        <table #drinkTable mat-table class="order-table" [dataSource]="this.orderService.orderDrinks">
+            <ng-container matColumnDef="beverage">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Beverage </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.beverage}} </td>
+            </ng-container>
+            <ng-container matColumnDef="size">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Size </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.size}} </td>
+            </ng-container>
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Quantity </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.quantity}} </td>
+            </ng-container>
+            <ng-container matColumnDef="priceStr">
+                <th mat-header-cell *matHeaderCellDef class="order-table-header-column"> Price </th>
+                <td mat-cell *matCellDef="let item" class="order-table-info"> {{item.priceStr}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="drinkColumnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: drinkColumnsToDisplay"></tr>
+        </table>
+    </div>
+
+    <div class="order-table-container" *ngIf="this.orderService.ordersCreated()">
+        <div id="total_cost" class="order-table-top">
+            <h3 class="order-table-top-header">Total Cost</h3>
+            <h3 style="margin-right: 10px;">
+                {{ this.orderService.totalPrice.str + ' (With 6% Sales Tax)' }}
+            </h3>
+        </div>
+        <div class="create-pizza-orderBtn-container">
+            <a routerLink="/pay" routerLinkActive="active"
+                class="create-pizza-orderBtn"
+                [innerHTML]="'Pay For Your Order'">
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.order-table-container {
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.order-table {
+    position: relative;
+    left: 7.5%;
+    width: 85%;
+    min-width: 80%;
+    background-color: transparent;
+    border: 1px solid var(--dark-brown);
+}
+
+.order-table-header-column {
+    color: var(--dark-brown);
+    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+.order-table-info {
+    color: var(--deep-red);
+    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    font-size: 14px;
+}
+
+.order-table-top {
+    position: relative;
+    left: 7.5%;
+    width: calc(85% - 2px);
+    height: fit-content;
+    border: 1px solid var(--dark-brown);
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.order-table-top-header {
+    margin-left: 10px;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    color: var(--dark-brown);
+    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    text-decoration: underline;
+}
+
+.order-table-top-icon {
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+    padding: 3px;
+    border: 1px solid var(--deep-red);
+    border-radius: 10px;
+    color: var(--deep-red);
+    transition: var(--default-transition);
+}
+.order-table-top-icon:hover {
+    background-color: rgba(190, 190, 190, 0.75);
+}
+
+.noOrder-container {
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    min-height: calc(100% - 85px);
+}
+.noOrder-container-text {
+    text-align: center;
+    font-size: 27px;
+    width: 90%;
+}
+
+#noOrder_buttons {
+    display: none;
+    max-width: 600px;
+}
+#total_cost {
+    border-bottom: 1px solid var(--dark-brown);
+    border-radius: 10px;
+}
+
+@media (max-width: 1050px) {
+    #noOrder_buttons {
+        display: flex;
+    }
+}
+@media (max-width: 550px) {
+    .order-table-header-column {
+        padding: 0px 10px;
+        font-size: 14px;
+    }
+    .order-table-info {
+        padding: 0px 10px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 425px) {
+    #noOrder_buttons {
+        flex-direction: column;
+        height: 130px;
+        padding: 0px;
+    }
+    .noOrder-container-text {
+        width: 95%;
+    }
+
+    .order-table-container {
+        transform: scale(0.9, 0.9);
+    }
+    .order-table-top {
+        width: calc(100% - 2px);
+        left: 0px;
+    }
+    .order-table {
+        width: 100%;
+        left: 0px;
+    }
+}
+</style>

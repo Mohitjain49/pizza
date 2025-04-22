@@ -1,0 +1,31 @@
+name: Deploy Angular App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # or 'master' if that's your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🟢 Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔨 Build Angular
+        run: ng build --configuration production --base-href /pizza/
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/pizza  # Replace with your actual app folder name

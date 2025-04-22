@@ -1,0 +1,71 @@
+<app-navigation-bar></app-navigation-bar>
+<main class="pizza-page pizza-auth-page">
+    <div class="pizza-auth-box pizza-auth-signUp-box">
+        <div class="pizza-auth-box-title-container center-flex-display">
+            <h1 class="pizza-auth-box-title">Sign Up</h1>
+        </div>
+
+        <div class="pizza-auth-tab">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header">Full Name</div>
+            </div>
+            <input class="pizza-auth-tab-textbox" type="text"
+                (click)="userService.setAuthError('')"
+                [(ngModel)]="name"
+            >
+        </div>
+        <div class="pizza-auth-tab" style="margin-bottom: 20px;">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header">Phone Number</div>
+                <div class="pizza-auth-box-subHeader">(Format: 1001001000)</div>
+            </div>
+            <input class="pizza-auth-tab-textbox"
+                (click)="userService.setAuthError('')"
+                [(ngModel)]="phoneNum"
+            >
+        </div>
+        <div class="pizza-auth-box-line"></div>
+
+        <div class="pizza-auth-tab">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header">Password</div>
+            </div>
+            <input class="pizza-auth-tab-textbox" type="password"
+                (click)="userService.setAuthError('')"
+                [(ngModel)]="password"
+            >
+        </div>
+        <div class="pizza-auth-tab">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header">Confirm Password</div>
+            </div>
+            <input class="pizza-auth-tab-textbox" type="password"
+                (click)="userService.setAuthError('')"
+                [(ngModel)]="confirmPassword"
+            >
+        </div>
+
+        <div class="pizza-auth-box-line"></div>
+        <app-address-box [payPage]="false"></app-address-box>
+        <app-charge-box [payPage]="false"></app-charge-box>
+
+        <div *ngIf="this.userService.authError !== ''" class="pizza-auth-errorBox center-flex-display">
+            {{ userService.authError }}
+        </div>
+
+        <div class="pizza-auth-btn-container center-flex-display">
+            <div class="pizza-auth-btn center-flex-display" (click)="signUpUser()">
+                <span style="margin-right: 4px;">Sign Up</span>
+                <mat-icon>upload</mat-icon>
+            </div>
+        </div>
+        <div class="pizza-auth-box-line"></div>
+
+        <div class="pizza-auth-redirect center-flex-display">
+            <span style="margin-right: 3px;">Already Have An Account?</span>
+            <span style="margin-left: 3px;">
+                <a class="pizza-auth-redirect-link" routerLink="/login" routerLinkActive="true">Log In</a>
+            </span>
+        </div>
+    </div>
+</main>

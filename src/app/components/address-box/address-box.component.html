@@ -1,0 +1,85 @@
+<div class="pizza-auth-tab" style="height: fit-content">
+    <div class="pizza-auth-tab-header-container center-flex-display">
+        <div class="pizza-auth-tab-header">Your Address</div>
+    </div>
+    <div class="address-box">
+        <div class="address-box-top">
+            <div class="address-box-top-msg">{{ payPage ? 'Mandatory for Delivery' : '(Optional For Sign Up)'}}</div>
+            <mat-icon class="address-box-top-icon" (click)="setBox()">
+                {{ (boxOpen ? 'arrow_drop_up' : 'arrow_drop_down') }}
+            </mat-icon>
+        </div>
+        <div *ngIf="boxOpen" class="address-box-bottom">
+            <div class="pizza-auth-tab">
+                <div class="pizza-auth-tab-header-container center-flex-display">
+                    <div class="pizza-auth-tab-header">Street Address</div>
+                </div>
+                <input class="pizza-auth-tab-textbox" [(ngModel)]="userService.address.street">
+            </div>
+            <div class="pizza-auth-tab">
+                <div class="pizza-auth-tab-header-container center-flex-display">
+                    <div class="pizza-auth-tab-header">City</div>
+                </div>
+                <input class="pizza-auth-tab-textbox" [(ngModel)]="userService.address.city">
+            </div>
+            <div class="pizza-auth-tab">
+                <div class="pizza-auth-tab-header-container center-flex-display">
+                    <div class="pizza-auth-tab-header">State</div>
+                </div>
+                <input class="pizza-auth-tab-textbox" [(ngModel)]="userService.address.state">
+            </div>
+            <div class="pizza-auth-tab">
+                <div class="pizza-auth-tab-header-container center-flex-display">
+                    <div class="pizza-auth-tab-header">Zip</div>
+                </div>
+                <input class="pizza-auth-tab-textbox" type="number" [(ngModel)]="userService.address.zipCode">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.address-box {
+    position: relative;
+    width: 75%;
+    left: calc(12.5% - 8px);
+    height: fit-content;
+    border: 1px solid var(--deep-red);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.address-box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+}
+.address-box-top-msg {
+    width: fit-content;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.address-box-top-icon {
+    cursor: pointer;
+    margin-right: 7px;
+    border: 1px solid var(--deep-red);
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    transition: var(--default-transition);
+}
+.address-box-top-icon:hover {
+    background-color: rgba(190, 190, 190, 0.75);
+}
+
+.address-box-bottom {
+    padding: 10px 0px;
+    height: fit-content;
+    width: 100%;
+}
+</style>

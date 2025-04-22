@@ -1,0 +1,184 @@
+.pizza-auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pizza-auth-box {
+    height: fit-content;
+    width: 450px;
+    border: 2px solid var(--deep-red);
+    padding: 25px 10px;
+    margin: 25px 0px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.pizza-auth-box-title-container {
+    width: 100%;
+    height: 75px;
+    margin-bottom: 25px;
+}
+.pizza-auth-box-title {
+    width: fit-content;
+    font-size: 45px;
+    border-bottom: 2px solid var(--deep-red);
+    padding: 0px 5px;
+    border-radius: 5px;
+    padding-bottom: 3px;
+}
+
+.pizza-auth-box-line {
+    position: relative;
+    left: calc(12.5% + 2.5px);
+    height: 2px;
+    width: 75%;
+    margin: 10px 0px;
+    background-color: var(--deep-red);
+}
+.pizza-auth-tab {
+    height: fit-content;
+    min-height: 70px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.pizza-auth-tab-header-container {
+    width: 100%;
+    height: fit-content;
+    min-height: 25px;
+    flex-direction: column !important;
+}
+.pizza-auth-tab-header {
+    width: 75%;
+    height: 25px;
+    color: var(--deep-red);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 15px;
+}
+.pizza-auth-box-subHeader {
+    font-size: 9px;
+    text-align: left;
+    width: 75%;
+    margin-left: 15px;
+    padding-bottom: 3px;
+    color: var(--deep-red);
+}
+
+.pizza-auth-tab-textbox {
+    position: relative;
+    border: 1px solid var(--deep-red);
+    outline: none;
+    font-size: 17px;
+    border-radius: 10px;
+    width: 75%;
+    left: calc(12.5% - 8px);
+    color: var(--deep-red);
+    padding: 5px 4px;
+    background-color: transparent;
+    transition: background-color 0.2s;
+}
+.pizza-auth-tab-textbox:hover {
+    background-color: rgba(255, 255, 255, 0.75); 
+}
+.pizza-auth-tab-textbox:focus {
+    border: 2px solid var(--deep-red);
+}
+
+.pizza-auth-btn-container {
+    margin-top: 10px;
+    height: 60px;
+    width: 100%;
+}
+.pizza-auth-btn {
+    cursor: pointer;
+    padding: 7px 30px;
+    border: 2px solid var(--deep-red);
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: var(--default-transition);
+}
+.pizza-auth-btn:hover {
+    background-color: rgba(255, 255, 255, 0.75); 
+}
+
+.pizza-auth-redirect {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.pizza-auth-redirect-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: darkmagenta;
+    font-weight: bold;
+    margin-top: 4px;
+    padding-bottom: 2px;
+    border-bottom: var(--empty-border);
+    transition: var(--default-transition);
+}
+.pizza-auth-redirect-link:hover {
+    border-color: darkmagenta;
+}
+
+.pizza-auth-errorBox {
+    position: relative;
+    height: fit-content;
+    width: 60%;
+    left: calc(20% - 14px);
+    padding: 5px 7px;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    text-align: center;
+}
+
+.pizza-auth-tab-datebox {
+    background-color: transparent;
+    position: relative;
+    font-size: 17px;
+    width: 75%;
+    left: calc(12.5% - 8px);
+    padding: 5px 4px;
+}
+.pizza-auth-tab-radioBtn {
+    height: 25px;
+    padding: 5px 0px;
+}
+
+@media (max-width: 550px) {
+    .pizza-auth-box {
+        width: 100%;
+        border: none;
+    }
+}
+
+@media (min-width: 1200px) and (min-height: 900px) {
+    .pizza-auth-login-box {
+        transform: scale(1.1, 1.1);
+    }
+}
+@media (min-width: 1200px) and (min-height: 1800px) {
+    .pizza-auth-signUp-box {
+        transform: scale(1.1, 1.1);
+    }
+    .pizza-auth-pay-box {
+        transform: scale(1.1, 1.1);
+    }
+}
+
+@media (min-width: 2000px) and (min-height: 2000px) {
+    .pizza-auth-login-box {
+        transform: scale(1.5, 1.5);
+    }
+    .pizza-auth-signUp-box {
+        transform: scale(1.5, 1.5);
+    }
+}

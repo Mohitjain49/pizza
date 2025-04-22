@@ -1,0 +1,79 @@
+<div class="create-pizza-box-page">
+    <div class="center-flex-display create-pizza-box-title-container">
+        <h2 class="create-pizza-title create-pizza-box-title">Select A Drink</h2>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Drink</h3>
+            <mat-icon class="create-pizza-box-tab-toggleIcon" (click)="toggleDrinkOpen()"
+                [fontIcon]="(drinkOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down')"
+                [title]="(drinkOpen ? 'Hide Drink Tab' : 'Select Drink')"
+            />
+        </div>
+        <mat-radio-group *ngIf="drinkOpen" [(ngModel)]="this.orderService.drinkCreation.beverage"
+            class="create-pizza-radio-btnGroup" style="grid-template-columns: 1fr;">
+
+            <mat-radio-button class="create-pizza-radio-btn" value="CocaCola">CocaCola</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Pepsi">Pepsi</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Dr. Pepper">Dr. Pepper</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Lemonade">Lemonade</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Orange Juice">Orange Juice</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Drink Size</h3>
+            <mat-icon class="create-pizza-box-tab-toggleIcon" (click)="toggleSizeOpen()"
+                [fontIcon]="(sizeOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down')"
+                [title]="(sizeOpen ? 'Hide Drink Size Tab' : 'Select Drink Size')"
+            />
+        </div>
+        <mat-radio-group [(ngModel)]="this.orderService.drinkCreation.size" *ngIf="sizeOpen"
+            class="create-pizza-radio-btnGroup" (change)="this.orderService.updateDrinkPrice()">
+
+            <mat-radio-button class="create-pizza-radio-btn" value="Small">Small ($3.50)</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Large">Large ($6.00)</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Medium">Medium ($4.50)</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Party Sized">Party Sized ($10.00)</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Quantity</h3>
+            <div class="center-flex-display quantity-section">
+                <button mat-mini-fab class="quantity-remove-btn" (click)="orderService.incrementDrinkQuantity(false)">
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <input class="quantity-numBox" type="number" [(ngModel)]="orderService.drinkCreation.quantity" readonly/>
+                <button mat-mini-fab class="quantity-add-btn" (click)="orderService.incrementDrinkQuantity(true)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Your Item</h3>
+        </div>
+        <div class="create-pizza-finale-tab">
+            <p style="margin-left: 15px;">Item:</p>
+            <p style="margin-right: 15px;">{{
+                this.orderService.drinkCreation.size + " " +
+                this.orderService.drinkCreation.beverage + " x" +
+                this.orderService.drinkCreation.quantity
+            }}</p>
+        </div>
+        <div class="create-pizza-finale-tab">
+            <p style="margin-left: 15px;">Total Cost:</p>
+            <p style="margin-right: 15px;" [innerHTML]="this.orderService.drinkCreation.priceStr"></p>
+        </div>
+    </div>
+    <div id="noOrder_buttons" class="create-pizza-orderBtn-container">
+        <div class="create-pizza-orderBtn" (click)="this.orderService.resetDrink()">Reset Drink</div>
+        <div class="create-pizza-orderBtn" (click)="this.orderService.addOrderItem('Drink')">Add To Order</div>
+    </div>
+</div>

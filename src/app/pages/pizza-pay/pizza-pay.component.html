@@ -1,0 +1,69 @@
+<app-navigation-bar></app-navigation-bar>
+<main class="pizza-page pizza-auth-page">
+    <div class="pizza-auth-box pizza-auth-pay-box">
+        <div class="pizza-auth-box-title-container center-flex-display">
+            <h1 class="pizza-auth-box-title">Pay Now</h1>
+        </div>
+
+        <div class="pizza-auth-tab">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header">Total Cost:</div>
+            </div>
+            <input class="pizza-auth-tab-textbox" [value]="totalCost.str" readonly>
+        </div>
+        <div class="pizza-auth-box-line"></div>
+
+        <div class="pizza-auth-tab" style="padding-bottom: 10px;">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header" style="position: relative; top: 5px;">Delivery Option</div>
+            </div>
+            <div class="pizza-auth-tab-header-container center-flex-display" style="flex-direction: column; height: fit-content;">
+                <mat-radio-button class="pizza-auth-tab-header pizza-auth-tab-radioBtn"
+                    [checked]="userStore.pickupPizzas"
+                    (click)="userStore.setPickupPizzas(true)">
+                    Pickup
+                </mat-radio-button>
+                <mat-radio-button class="pizza-auth-tab-header pizza-auth-tab-radioBtn"
+                    [checked]="!userStore.pickupPizzas"
+                    (click)="userStore.setPickupPizzas(false)">
+                    Delivery
+                </mat-radio-button>
+            </div>
+        </div>
+        <div class="pizza-auth-tab">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header">Date of Delivery/Pickup</div>
+            </div>
+            <mat-form-field class="pizza-auth-tab-datebox">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <app-address-box *ngIf="!userStore.pickupPizzas" [payPage]="true"></app-address-box>
+        <div class="pizza-auth-box-line"></div>
+
+        <div class="pizza-auth-tab">
+            <div class="pizza-auth-tab-header-container center-flex-display">
+                <div class="pizza-auth-tab-header">Your Name</div>
+            </div>
+            <input class="pizza-auth-tab-textbox">
+        </div>
+        <app-charge-box [payPage]="true"></app-charge-box>
+
+        <div class="pizza-auth-btn-container center-flex-display">
+            <div class="pizza-auth-btn center-flex-display">
+                <span style="margin-right: 8px;">Pay For Your Meal</span>
+                <mat-icon>credit_card</mat-icon>
+            </div>
+        </div>
+        <div class="pizza-auth-box-line"></div>
+
+        <div class="pizza-auth-redirect center-flex-display" style="justify-content: space-evenly;">
+            <a class="pizza-auth-redirect-link" routerLink="/" routerLinkActive="true">Your Order</a>
+            <a class="pizza-auth-redirect-link" routerLink="/login" routerLinkActive="true" style="margin-right: 25px;">Login</a>
+        </div>
+    </div>
+</main>

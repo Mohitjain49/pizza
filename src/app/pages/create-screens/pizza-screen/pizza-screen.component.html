@@ -1,0 +1,105 @@
+<div class="create-pizza-box-page">
+    <div class="center-flex-display create-pizza-box-title-container">
+        <h2 class="create-pizza-title create-pizza-box-title">Make A Pizza</h2>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Pizza Size</h3>
+            <mat-icon class="create-pizza-box-tab-toggleIcon" (click)="toggleSizeOpen()"
+                [fontIcon]="(sizeOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down')"
+                [title]="(sizeOpen ? 'Hide Pizza Size Tab' : 'Select Pizza Size')"
+            />
+        </div>
+        <mat-radio-group *ngIf="sizeOpen" [(ngModel)]="this.orderService.pizzaCreation.size"
+            class="create-pizza-radio-btnGroup" (change)="this.orderService.updatePizzaPrice()">
+
+            <mat-radio-button class="create-pizza-radio-btn" value="10 Inch">10'' inch ($10.00)</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="14 Inch">14'' inch ($14.50)</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="12 Inch">12'' inch ($11.50)</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="16 Inch">16'' inch ($17.00)</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Pizza Crust</h3>
+            <mat-icon class="create-pizza-box-tab-toggleIcon" (click)="toggleCrustsOpen()"
+                [fontIcon]="(crustsOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down')"
+                [title]="(crustsOpen ? 'Hide Crusts Tab' : 'Select Pizza Crust')"
+            />
+        </div>
+        <mat-radio-group *ngIf="crustsOpen" [(ngModel)]="this.orderService.pizzaCreation.crust"
+            class="create-pizza-radio-btnGroup" (change)="this.orderService.updatePizzaPrice()">
+
+            <mat-radio-button class="create-pizza-radio-btn" value="Thick">Thick Crust</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Thin">Thin Crust</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="Cheesy">Cheesy Crust (+$0.50)</mat-radio-button>
+            <mat-radio-button class="create-pizza-radio-btn" value="New York">New York Crust</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top" style="margin-bottom: 3px;">
+            <h3 class="create-pizza-box-tab-title">Toppings</h3>
+            <mat-icon class="create-pizza-box-tab-toggleIcon" (click)="toggleToppingsOpen()"
+                [fontIcon]="(toppingsOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down')"
+                [title]="(toppingsOpen ? 'Hide Toppings' : 'Select Toppings')"
+            />
+        </div>
+        <p style="margin-bottom: 5px; margin-left: 10px;">(Up to Four)</p>
+        <div *ngIf="toppingsOpen" class="create-pizza-radio-btnGroup">
+            <mat-checkbox class="create-pizza-radio-btn"
+                *ngFor="let topping of this.orderService.pizzaToppings; let i = index"
+                [checked]="topping.selected" (change)="this.orderService.onToppingsChange(i)"
+                [disabled]="!topping.selected && this.orderService.maxToppingsSelected()">
+                {{ topping.option }}
+            </mat-checkbox>
+        </div>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Quantity</h3>
+            <div class="center-flex-display quantity-section">
+                <button mat-mini-fab class="quantity-remove-btn" (click)="orderService.incrementPizzasQuantity(false)">
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <input class="quantity-numBox" type="number" [(ngModel)]="orderService.pizzaCreation.quantity" readonly/>
+                <button mat-mini-fab class="quantity-add-btn" (click)="orderService.incrementPizzasQuantity(true)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="create-pizza-box-tab">
+        <div class="create-pizza-box-tab-top">
+            <h3 class="create-pizza-box-tab-title">Your Item</h3>
+        </div>
+        <div class="create-pizza-finale-tab">
+            <p style="margin-left: 15px;">Main Item:</p>
+            <p style="margin-right: 15px;">{{
+                this.orderService.pizzaCreation.size + " Pizza (" +
+                this.orderService.pizzaCreation.crust + " Crust) x" +
+                this.orderService.pizzaCreation.quantity
+            }}</p>
+        </div>
+        <div class="create-pizza-finale-tab">
+            <p style="margin-left: 15px; height: 100%;">Toppings:</p>
+            <div style="margin-right: 15px; padding-bottom: 3px;" *ngIf="this.orderService.pizzaCreation.toppings.length != 0">
+                <p *ngFor="let topping of this.orderService.pizzaCreation.toppings"> {{ topping }} </p>
+            </div>
+            <p style="margin-right: 15px;" *ngIf="this.orderService.pizzaCreation.toppings.length == 0">None Selected</p>
+        </div>
+        <div class="create-pizza-finale-tab">
+            <p style="margin-left: 15px;">Total Cost:</p>
+            <p style="margin-right: 15px;" [innerHTML]="this.orderService.pizzaCreation.priceStr"></p>
+        </div>
+    </div>
+
+    <div id="noOrder_buttons" class="create-pizza-orderBtn-container">
+        <div class="create-pizza-orderBtn" (click)="this.orderService.resetPizza()">Reset Order</div>
+        <div class="create-pizza-orderBtn" (click)="this.orderService.addOrderItem('Pizza')">Add To Order</div>
+    </div>
+</div>

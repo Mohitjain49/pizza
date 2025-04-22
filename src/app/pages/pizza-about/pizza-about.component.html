@@ -1,0 +1,145 @@
+<app-navigation-bar></app-navigation-bar>
+<main class="pizza-page" style="display: flex; justify-content: center; height: fit-content;">
+    <div class="pizza-about">
+        <h1 class="pizza-about-title" id="about_our_shop">About Our Shop</h1>
+
+        <p class="pizza-about-desc">
+            Welcome to Group Five's Pizza Shop, where passion for pizza meets unparalleled customer service. 
+            We are a family-owned and operated business dedicated to serving our community with fresh, high-quality, and delicious food. 
+            From the moment we opened our doors, our mission has been to bring people together over a shared love for great pizza. 
+            We take pride in creating a warm, welcoming environment where every customer feels like family.
+        </p>
+
+        <p class="pizza-about-desc">
+            At Group Five's Pizza Shop, we believe that every meal should be an experience. 
+            That's why we've invested in a streamlined, customer-friendly ordering system that makes placing an order quick and easy. 
+            Whether you prefer to pick up your pizza or have it delivered right to your door, we ensure that every step of the process is seamless and enjoyable. 
+            We value your time and are committed to delivering the freshest, tastiest pizza in the shortest time possible.
+        </p>
+
+        <p class="pizza-about-desc">
+            Our shop is more than just a place to grab a slice—it's a cornerstone of the community. 
+            We're proud to support local events, celebrate special occasions, and create connections through our food. 
+            Group Five's Pizza Shop isn't just about feeding appetites; it's about creating memories. 
+            Thank you for allowing us to be part of your lives, one pizza at a time.
+        </p>
+
+        <div class="pizza-about-line"></div>
+        <h2 class="pizza-about-title" id="our_pizzas">Our Pizzas</h2>
+
+        <p class="pizza-about-desc">
+            At Group Five's Pizza Shop, we've made ordering your pizza simple and seamless. 
+            Start by browsing our menu, where you can explore a variety of crusts, toppings, and beverage options to customize your perfect meal. 
+            Once you've made your selection, place your order by specifying your preferences for toppings, crust type, and the desired quantity of each menu item. 
+            Provide your name, phone number, and address for delivery or pick-up; if you're a returning customer, our system will quickly retrieve your saved details. 
+            Finalize your order by filling in your card information. 
+            Whether you choose delivery or pick-up, you can count on receiving your fresh, delicious pizza promptly and hassle-free.
+        </p>
+
+        <div class="pizza-about-line"></div>
+        <h2 class="pizza-about-title" id="creating_an_account">Creating An Account</h2>
+
+        <p class="pizza-about-desc">
+            Getting started with Group Five's Pizza Shop is easy! 
+            To create an account, simply provide your basic information, including your name, phone number, and address. 
+            This ensures that every time you order, we can quickly retrieve your details for a smooth and hassle-free experience. 
+            For delivery, you can also include helpful location details like your subdivision name or 
+            the nearest major intersection to make sure your pizza arrives hot and fresh.
+        </p>
+
+        <p class="pizza-about-desc">
+            When setting up your account, you'll have the option to save your card information so you can breeze through the checkout process in the future. 
+            Your account also keeps a record of your orders, making it easy to reorder your favorite pizzas or try something new. 
+            With your account, you're all set for fast, convenient, and personalized service every time you order!
+        </p>
+
+        <div class="pizza-about-line"></div>
+        <h2 class="pizza-about-title" id="credits">Credits</h2>
+
+        <div style="margin-top: 40px;">
+            <a href="https://angular.dev/" target="_blank" style="text-decoration: none;">
+                <h3 class="pizza-angular-title">Application Made With</h3>
+                <img class="pizza-angular-title" style="border-bottom: none;" src="Angular_Banner.png" />
+            </a>
+        </div>
+        <a class="pizza-about-link" href="https://www.flaticon.com/free-icons/pizza" title="pizza icon" target="_blank">
+            <p class="pizza-about-desc" style="color: var(--dark-brown);">
+                <span style="margin-right: 3px;"><img src="Pizza_Shop_Icon.ico" width="18" /></span>
+                Pizza icon created by max.icons - Flaticon
+            </p>
+        </a>
+    </div>
+</main>
+
+<style>
+.pizza-about {
+    width: fit-content;
+    max-width: 800px;
+    height: fit-content;
+    margin: 50px;
+    text-align: left;
+}
+.pizza-about-title {
+    width: fit-content;
+    border-bottom: 2px solid var(--deep-red);
+    padding: 0px 5px;
+    padding-bottom: 2px;
+    border-radius: 5px;
+}
+
+#about_our_shop {
+    padding-bottom: 5px;
+}
+
+.pizza-about-link {
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    transition: var(--default-transition);
+    width: fit-content;
+    padding-bottom: 2px;
+}
+.pizza-about-link:hover {
+    border-color: var(--dark-brown);
+}
+
+.pizza-about-desc {
+    margin-top: 20px;
+    font-size: 18px;
+    width: fit-content;
+    text-align: left;
+}
+.pizza-about-line {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    height: 2px;
+    width: 100%;
+    background-color: var(--deep-red);
+}
+
+.pizza-angular-title {
+    width: fit-content;
+    color: #933BFF;
+    border-bottom: 2px solid;
+    text-decoration: none;
+    transition: var(--default-transition);
+    width: 320px;
+    text-align: center;
+}
+.pizza-angular-title:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 415px) {
+    .pizza-angular-title {
+        width: 240px;
+        font-size: 20px;
+    }
+}
+@media (max-width: 900px) {
+    .pizza-about {
+        width: calc(100% - 50px);
+        margin: 50px 25px;
+    }
+}
+</style>

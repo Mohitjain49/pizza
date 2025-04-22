@@ -1,0 +1,128 @@
+<div class="pizza-auth-tab" style="height: fit-content">
+    <div class="pizza-auth-tab-header-container center-flex-display">
+        <div class="pizza-auth-tab-header" style="height: fit-content; padding-bottom: 7px;">Your Credit Card Information</div>
+    </div>
+    <div class="charge-box">
+        <div class="charge-box-top">
+            <div class="charge-box-top-msg">{{ payPage ? 'Mandatory For Payment' : '(Optional For Sign Up)'}}</div>
+            <mat-icon class="charge-box-top-icon" (click)="setBox()">
+                {{ (boxOpen ? 'arrow_drop_up' : 'arrow_drop_down') }}
+            </mat-icon>
+        </div>
+        <div *ngIf="boxOpen" class="charge-box-bottom">
+            <div class="pizza-auth-tab" style="height: fit-content">
+                <div class="pizza-auth-tab-header-container center-flex-display">
+                    <div class="pizza-auth-tab-header" style="position: relative; top: 3px;">Charge Account</div>
+                </div>
+                <div class="charge-box-cards-container">
+                    <div class="charge-box-card center-flex-display" title="Visa"
+                        (click)="userService.setCardType('Visa')"
+                        [style]="{ 'backgroundColor' : ((userService.chargeAcc.cardType === 'Visa') ? 'var(--dark-brown-translucent)' : '')}">
+
+                        <img src="charge-cards/Visa_Logo.svg" height="30" />
+                    </div>
+                    <div class="charge-box-card center-flex-display" title="MasterCard"
+                        (click)="userService.setCardType('MasterCard')"
+                        [style]="{ 'backgroundColor' : ((userService.chargeAcc.cardType === 'MasterCard') ? 'var(--dark-brown-translucent)' : '')}">
+
+                        <img src="charge-cards/MasterCard_Logo.svg" height="35" />
+                    </div>
+                </div>
+                <div class="charge-box-cards-container">
+                    <div class="charge-box-card center-flex-display" title="American Express"
+                        (click)="userService.setCardType('American Express')"
+                        [style]="{ 'backgroundColor' : ((userService.chargeAcc.cardType === 'American Express') ? 'var(--dark-brown-translucent)' : '')}">
+
+                        <img src="charge-cards/American_Express_Logo.svg" height="35" />
+                    </div>
+                    <div class="charge-box-card center-flex-display" title="Other Account"
+                        (click)="userService.setCardType('Other')"
+                        [style]="{ 'backgroundColor' : ((userService.chargeAcc.cardType === 'Other') ? 'var(--dark-brown-translucent)' : '')}">
+
+                        <span>Other</span>
+                        <mat-icon class="charge-box-card-matIcon">credit_card</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="pizza-auth-tab">
+                <div class="pizza-auth-tab-header-container center-flex-display">
+                    <div class="pizza-auth-tab-header" style="height: fit-content; padding-bottom: 7px;">Credit Card Number</div>
+                </div>
+                <input class="pizza-auth-tab-textbox" type="number" [(ngModel)]="userService.chargeAcc.cardNumber">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.charge-box {
+    position: relative;
+    width: 75%;
+    left: calc(12.5% - 8px);
+    height: fit-content;
+    border: 1px solid var(--deep-red);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.charge-box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+}
+.charge-box-top-msg {
+    width: fit-content;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.charge-box-top-icon {
+    cursor: pointer;
+    margin-right: 7px;
+    border: 1px solid var(--deep-red);
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    transition: var(--default-transition);
+}
+.charge-box-top-icon:hover {
+    background-color: rgba(190, 190, 190, 0.75);
+}
+
+.charge-box-bottom {
+    padding: 10px 0px;
+    height: fit-content;
+    width: 100%;
+}
+.charge-box-cards-container {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 75%;
+    left: 12.5%;
+    height: 50px;
+}
+
+.charge-box-card {
+    cursor: pointer;
+    width: 45%;
+    height: 80%;
+    transition: var(--default-transition);
+    border: 1px solid var(--deep-red);
+    border-radius: 7px;
+}
+.charge-box-card:hover {
+    background-color: rgba(190, 190, 190, 0.75);
+}
+.charge-box-card-matIcon {
+    margin-left: 3px;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+</style>
