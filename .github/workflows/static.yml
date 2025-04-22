@@ -22,10 +22,10 @@ jobs:
         run: npm ci
 
       - name: 🔨 Build Angular
-        run: npm run build
+        run: npm run build --base-href /pizza/
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/pizza  # Replace with your actual app folder name
+          publish_dir: ./dist/pizza/browser  # Replace with your actual app folder name
