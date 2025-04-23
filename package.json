@@ -11,7 +11,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "open": "ng serve --open",
-    "deploy": "ng build & ng deploy --base-href=/pizza/"
+    "deploy": "ng deploy --base-href=/pizza/"
   },
   "private": true,
   "dependencies": {
